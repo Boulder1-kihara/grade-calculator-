@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY GRADE CALCULATOR</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #layer1, #layer2, #layer3 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .subject-container {
+            width: 300px;
+            height: auto;
+            color: black;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #discrete {
+            background-color: antiquewhite;
+        }
+
+        #prob {
+            background-color: rgb(211, 248, 2);
+        }
+
+        #datas {
+            background-color: lime;
+        }
+
+        #insta {
+            background-color: aqua;
+        }
+
+        #os {
+            background-color: aquamarine;
+        }
+
+        #sys {
+            background-color: azure;
+        }
+
+        #net {
+            background-color: chocolate;
+        }
+
+        #data {
+            background-color: rgb(227, 248, 41);
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .cat1, .cat2, .assignment, .exam {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        #message-area {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            white-space: pre-line;
+        }
+
+        @media (max-width: 768px) {
+            #layer1, #layer2, #layer3 {
+                flex-direction: column;
+            }
+
+            .subject-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">MY GRADE CALCULATOR</h1>
+    <div id="layer1">
+        <div id="discrete" class="subject-container">
+            <h3 id="math">Discrete Math</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="disc"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="disc2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="disc_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="disc3"></textarea>
+            <button onclick="calculateTotal('disc', 'disc2', 'disc_assignment', 'disc3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+        <div id="prob" class="subject-container">
+            <h3 id="pro">Probability & Statistics 1</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="pro"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="pro2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="pro_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="pro3"></textarea>
+            <button onclick="calculateTotal('pro', 'pro2', 'pro_assignment', 'pro3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+        <div id="datas" class="subject-container">
+            <h3 id="dso">Data Structures and Algorithms</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="dsa1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="dsa2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="dsa_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="dsa3"></textarea>
+            <button onclick="calculateTotal('dsa1', 'dsa2', 'dsa_assignment', 'dsa3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+    </div>
+    <div id="layer2" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
+        <div id="insta" class="subject-container">
+            <h3 id="in">Installation and Customization</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="insa1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="insa2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="insa_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="insa3"></textarea>
+            <button onclick="calculateTotal('insa1', 'insa2', 'insa_assignment', 'insa3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+        <div id="os" class="subject-container">
+            <h3 id="o">Operating Systems</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="os1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="os2"></textarea>
+             <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="os_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="os3"></textarea>
+            <button onclick="calculateTotal('os1', 'os2', 'os_assignment', 'os3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+        <div id="sys" class="subject-container">
+            <h3 id="sy">System Analysis and Design</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="sys1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="sys2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="sys_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="sys3"></textarea>
+            <button onclick="calculateTotal('sys1', 'sys2', 'sys_assignment', 'sys3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+    </div>
+    <div id="layer3" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        <div id="net" class="subject-container">
+            <h3 id="ne">Computer Networks</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="net1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="net2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="net_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="net3"></textarea>
+            <button onclick="calculateTotal('net1', 'net2', 'net_assignment', 'net3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+        <div id="data" class="subject-container">
+            <h3 id="datab">Database Management System</h3>
+            <p class="cat1">Cat 1 marks:</p>
+            <textarea name="cat1" id="data1"></textarea>
+            <p class="cat2">Cat 2 marks:</p>
+            <textarea name="cat2" id="data2"></textarea>
+            <p class="assignment">Assignment Marks:</p>
+            <textarea name="assignment" id="data_assignment"></textarea>
+            <p class="exam">Main Exam marks:</p>
+            <textarea name="exam" id="data3"></textarea>
+            <button onclick="calculateTotal('data1', 'data2', 'data_assignment', 'data3', 'message-area')">Total</button>
+            <div id="message-area" style="display: none;">
+                <h3>Submitted Data:</h3>
+                <p id="submitted-data"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calculateTotal(cat1Id, cat2Id, assignmentId, examId, messageId) {
+            const cat1Marks = parseFloat(document.getElementById(cat1Id).value);
+            const cat2Marks = parseFloat(document.getElementById(cat2Id).value);
+            const assignmentMarks = parseFloat(document.getElementById(assignmentId).value);
+            const examMarks = parseFloat(document.getElementById(examId).value);
+            const messageArea = document.getElementById(messageId);
+
+            if (isNaN(cat1Marks) || isNaN(cat2Marks) || isNaN(assignmentMarks) || isNaN(examMarks)) {
+                messageArea.textContent = "Please enter valid numbers for all fields.";
+                messageArea.style.display = "block";
+                return;
+            }
+
+            if (cat1Marks > 20 || cat1Marks < 0 || cat2Marks > 20 || cat2Marks < 0 || assignmentMarks > 10 || assignmentMarks < 0 || examMarks > 70 || examMarks < 0) {
+                messageArea.textContent = "Marks should be within the valid range (Cat 1 and Cat 2: 0-30, Assignment: 0-10, Exam: 0-70).";
+                messageArea.style.display = "block";
+                return;
+            }
+
+            const meanCatMarks = (cat1Marks + cat2Marks) / 2;
+            const totalMarks = meanCatMarks + assignmentMarks + examMarks;
+
+            let grade = '';
+            if (totalMarks >= 70 && totalMarks <= 100) {
+                grade = 'A';
+            } else if (totalMarks >= 60 && totalMarks <= 69) {
+                grade = 'B';
+            } else if (totalMarks >= 50 && totalMarks <= 59) {
+                grade = 'C';
+            } else if (totalMarks >= 40 && totalMarks <= 49) {
+                grade = 'D';
+            }else {
+                grade = 'E';
+            }
+
+            messageArea.textContent = `Cat 1 Marks: ${cat1Marks}\nCat 2 Marks: ${cat2Marks}\nAssignment Marks: ${assignmentMarks}\nExam Marks: ${examMarks}\nTotal Marks: ${totalMarks}\nGrade: ${grade}`;
+            messageArea.style.display = "block";
+        }
+    </script>
+</body>
+</html>
